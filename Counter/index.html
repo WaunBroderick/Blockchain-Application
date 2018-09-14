@@ -13,26 +13,98 @@
             <button id='decremenet'>Decrement</button>
             <button id='reset'>Reset</button>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+        
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="./web3.min.js"></script>
 
-        <script>
-            var contract;
+    <script>
+        var contract;
 
-            $(document).ready(function(){
-                initContract();
-                getValue();
-            })
+        $(document).ready(function() {
+            initContract();
+            getValue();
+        })
 
-            function initCounter() {
-                web3 = new Web3(web3.currentProvider);
+        function initContract() {
+            web3 = new Web3(web3.currentProvider);
                 var address = "0x3b8088dd129f0c12445286dec92c851013e507e9";
                 var abi = [
                     
-                ]
-            }
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "decrement",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "increase",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "reset",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getCounter",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
 
-        </script>
 
-        <script src="./web3.min.js"></script>
-    </body>
+                ];
+
+contract = new web3.eth.Contract(abi, address);
+        }
+
+        function getValue() {
+            contract.methods.getCounter().call().then((result) => {
+                $('#counter-value').html(result);
+            })
+        }
+
+        $('#increment').click(function() {
+            web3.eth.getAccounts().then(function(accounts) {
+                var acct = accounts[0];
+                return contract.methods.increment().send({from: acct});
+            }).then(function(tx) {
+                console.log(tx);
+                var curr = parseInt($('#counter-value').html());
+                $('#counter-value').html(curr + 1);
+            }).catch(function(err) {
+                console.log(err);
+            })
+        })
+
+        // Implement decrement and reset as homework
+    </script>
+
+</body>
 </html>
