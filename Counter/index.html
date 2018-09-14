@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-COmpatible" content="IE=edge">
+        <title>Simple Counter</title>
+        <meta name="viewport" content="width=device-width, inital-scale=1">
+    </head>
+    <body>
+        <div>
+            <p id='counter-Value'></p>
+            <button id='incremenet'>Increment</button>
+            <button id='decremenet'>Decrement</button>
+            <button id='reset'>Reset</button>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+
+        <script>
+            var contract;
+
+            $(document).ready(function(){
+                initContract();
+                getValue();
+            })
+
+            function initCounter() {
+                web3 = new Web3(web3.currentProvider);
+                var address = "0x3b8088dd129f0c12445286dec92c851013e507e9";
+                var abi = [
+                    
+                ]
+            }
+
+        </script>
+
+        <script src="./web3.min.js"></script>
+    </body>
+</html>
