@@ -8,8 +8,8 @@
     </head>
     <body>
         <div>
-            <p id='counter-Value'></p>
-            <button id='incremenet'>Increment</button>
+            <p id='counter-value'></p>
+            <button id='increment'>Increment</button>
             <button id='decremenet'>Decrement</button>
             <button id='reset'>Reset</button>
         </div>
@@ -27,9 +27,9 @@
 
         function initContract() {
             web3 = new Web3(web3.currentProvider);
-                var address = "0x3b8088dd129f0c12445286dec92c851013e507e9";
+                var address = "0xf884ffd36bd6e28559c731570af3150f15f5eb6b";
                 var abi = [
-                    
+                
 	{
 		"constant": false,
 		"inputs": [],
@@ -42,16 +42,7 @@
 	{
 		"constant": false,
 		"inputs": [],
-		"name": "increase",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "reset",
+		"name": "increment",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -77,11 +68,10 @@
 		"stateMutability": "view",
 		"type": "function"
 	}
+];
 
 
-                ];
-
-contract = new web3.eth.Contract(abi, address);
+            contract = new web3.eth.Contract(abi, address);
         }
 
         function getValue() {
